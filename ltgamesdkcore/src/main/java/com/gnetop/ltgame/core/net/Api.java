@@ -16,7 +16,7 @@ public class Api extends RetrofitClient {
     //正式服务器
     public static final String FORMAL_SERVER_URL="https://";
     //正式服务器
-    public static final String FORMAL_SERVER_DOMAIN=".gco.appcpi.com";
+    public static final String FORMAL_SERVER_DOMAIN=".sdk.appcpi.com";
     //微信域名
     public static final String WX_BASE_URL = "https://api.weixin.qq.com/";
 
