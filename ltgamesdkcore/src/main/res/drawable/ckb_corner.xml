@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+
+    <!-- 圆角半径 -->
+    <size
+        android:width="@dimen/dp_16"
+        android:height="@dimen/dp_16" />
+
+    <corners android:radius="@dimen/dp_4"/>
+
+    <!-- 矩形的边线 -->
+    <stroke
+        android:width="@dimen/dp_2"
+        android:color="@color/colorGray" />
+
+    <!-- 矩形的内部颜色，这里设置成白色 -->
+    <gradient
+        android:endColor="@color/colorGrayLight"
+        android:startColor="@color/colorGrayLight" />
+</shape>

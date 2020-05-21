@@ -1,0 +1,2 @@
+include  ':ltgamesdkcore'
+rootProject.name='LTGameSDK_Android'

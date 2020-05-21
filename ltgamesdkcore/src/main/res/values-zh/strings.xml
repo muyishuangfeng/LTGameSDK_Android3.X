@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">LTGameSDK</string>
+    <string name="text_login_way">请选择一种登录方式</string>
+    <string name="text_login">登录</string>
+    <string name="text_google">Sign in with Google</string>
+    <string name="text_facebook">Sign in with Facebook</string>
+    <string name="text_login_visitor">游客</string>
+    <string name="text_login_email">邮箱</string>
+    <string name="txt_attention">注意</string>
+    <string name="text_logout">登出</string>
+    <string name="text_sure">确定</string>
+    <string name="text_into_game">进入游戏</string>
+    <string name="text_privacy">已阅读并同意</string>
+    <string name="text_privacy_detail">隐私政策</string>
+    <string name="text_agreement">已阅读并同意</string>
+    <string name="text_agreement_detail">用户协议</string>
+    <string name="text_bind">请选择想绑定的账号</string>
+    <string name="text_bind_facebook">Bind to Facebook</string>
+    <string name="text_bind_google">Bind to Google</string>
+    <string name="text_bind_email">Bind to Email</string>
+    <string name="text_user_privacy"><![CDATA[用户协议   &\n  隐私政策]]></string>
+    <string name="text_sure_guest">确认游客登录?</string>
+    <string name="text_guest_content">使用游客登录后，重新安装游戏，设备更换、系统升级、恢复出厂设置
+    等操作会导致账号数据丢失，为了您的账号安全考虑，建议您及时转为正式账号</string>
+    <string name="text_canceled">取消</string>
+    <string name="text_turn_title">您正在使用游客登录，为了您的账号安全，建议您尽快转正</string>
+    <string name="text_guest_switch">更换账号</string>
+    <string name="text_guest_bind">游戏转正</string>
+    <string name="text_login_continue">继续登录</string>
+    <string name="text_hint_email">请输入您的邮箱</string>
+    <string name="text_hint_verification_code">请输入验证码</string>
+    <string name="text_send">发送</string>
+    <string name="text_resend">重新获取</string>
+    <string name="text_back">返回</string>
+    <string name="text_login_failed">登录失败，请重试</string>
+    <string name="txt_default">默认</string>
+    <string name="text_parameter_error">参数错误</string>
+    <string name="text_bind_content">绑定失败，请重试</string>
+    <string name="text_bind_failed">此账号已被绑定，请使用其他的账号</string>
+    <string name="text_loading">加载中...</string>
+    <string name="text_seal_number">此帐户已被暂停，请联系客户服务.</string>
+    <string name="text_sealing_equipment">这是被阻止的设备，请联系客户服务。</string>
+    <string name="text_qq">QQ登录</string>
+    <string name="text_wx">微信登录</string>
+    <string name="text_bind_wx">绑定微信</string>
+    <string name="text_bind_qq">绑定QQ</string>
+</resources>

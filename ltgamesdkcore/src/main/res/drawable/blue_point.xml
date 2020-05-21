@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+
+    <size
+        android:width="@dimen/dp_9"
+        android:height="@dimen/dp_9" />
+
+    <!-- 矩形的内部颜色，这里设置成白色 -->
+    <gradient
+        android:endColor="@color/colorLightBlue"
+        android:startColor="@color/colorLightBlue" />
+</shape>

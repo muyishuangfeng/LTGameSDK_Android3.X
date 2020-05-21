@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_400"
+    android:layout_height="@dimen/dp_248"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_fragment"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_25"
+        android:gravity="center"
+        android:text="@string/text_bind"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_17"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/lyt_bind_facebook"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_28"
+        android:layout_below="@+id/txt_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_25"
+        android:background="@drawable/btn_blue_14_corner"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_22">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dp_2"
+            android:src="@drawable/facebook" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_weight="1"
+            android:text="@string/text_bind_facebook"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_10" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lyt_bind_wx"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_28"
+        android:layout_below="@+id/txt_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_25"
+        android:visibility="gone"
+        android:background="@drawable/btn_green_14_corner"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_22">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dp_2"
+            android:src="@drawable/wechat" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:gravity="start"
+            android:text="@string/text_bind_wx"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_10" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyt_bind_google"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_28"
+        android:layout_below="@+id/lyt_bind_facebook"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/btn_blue_14_google_corner"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_22">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dp_2"
+            android:src="@drawable/google" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="@string/text_bind_google"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color_black_gray"
+            android:textSize="@dimen/sp_10" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lyt_bind_qq"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_28"
+        android:layout_below="@+id/lyt_bind_wx"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/btn_qq_14_corner"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_22">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dp_2"
+            android:src="@drawable/qq" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:gravity="start"
+            android:text="@string/text_bind_qq"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_10" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyt_bind_email"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_28"
+        android:layout_below="@+id/lyt_bind_google"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_25"
+        android:background="@drawable/btn_blue_14_google_corner"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_22">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dp_2"
+            android:src="@drawable/email" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="@string/text_bind_email"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color_black_gray"
+            android:textSize="@dimen/sp_10" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lyt_bind_home_email"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_28"
+        android:visibility="gone"
+        android:layout_below="@+id/lyt_bind_qq"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_25"
+        android:background="@drawable/btn_blue_14_google_corner"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_22">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dp_2"
+            android:src="@drawable/email" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="@string/text_bind_email"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color_black_gray"
+            android:textSize="@dimen/sp_10" />
+
+    </LinearLayout>
+
+</RelativeLayout>

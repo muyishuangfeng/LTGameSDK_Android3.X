@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 请求服务时的进度条，在commonDialog中调用 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/progress_bar_bg"
+    android:gravity="center"
+    android:minHeight="@dimen/dp_50"
+    android:paddingLeft="@dimen/dp_20"
+    android:paddingRight="@dimen/dp_20">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/progress_color"
+        android:indeterminateDuration="1000"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/msg_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_loading"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_11" />
+
+</LinearLayout>

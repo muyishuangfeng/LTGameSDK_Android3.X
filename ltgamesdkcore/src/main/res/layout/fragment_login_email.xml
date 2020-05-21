@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_284"
+    android:layout_height="@dimen/dp_370"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_fragment"
+    android:gravity="center" >
+
+    <TextView
+        android:id="@+id/txt_guest_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_50"
+        android:gravity="center"
+        android:text="@string/text_login_email"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_17"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_guest_title"
+        android:layout_marginLeft="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_18"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/bg_edit"
+            android:gravity="center_vertical"
+            android:hint="@string/text_hint_email"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/dp_14"
+            android:singleLine="true"
+            android:textColorHint="@color/text_color_black_placeholder"
+            android:textSize="@dimen/sp_10" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_14"
+            android:background="@drawable/bg_edit"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingRight="@dimen/dp_14">
+
+            <EditText
+                android:id="@+id/edt_ver_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/txt_line"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/text_hint_verification_code"
+                android:maxLength="8"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColorHint="@color/text_color_black_placeholder"
+                android:textSize="@dimen/sp_10" />
+
+            <TextView
+                android:id="@+id/txt_line"
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="@dimen/dp_11"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_toLeftOf="@+id/btn_count_down"
+                android:background="@color/colorLine" />
+
+            <com.gnetop.ltgame.core.ui.CountDownButton
+                android:id="@+id/btn_count_down"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_40"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/text_send"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlue" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txt_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_14"
+            android:visibility="invisible"
+            android:text="@string/txt_default"
+            android:textColor="@color/text_color_red"
+            android:textSize="@dimen/sp_10" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ryt_guest_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_layout"
+        android:layout_marginTop="@dimen/dp_22"
+        android:layout_marginBottom="@dimen/dp_60"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txt_guest_cancel"
+            android:layout_width="@dimen/dp_87"
+            android:layout_height="@dimen/dp_28"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_light_gray_corner"
+            android:gravity="center"
+            android:text="@string/text_back"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color_black_placeholder"
+            android:textSize="@dimen/sp_10" />
+
+        <TextView
+            android:id="@+id/txt_guest_continue"
+            android:layout_width="@dimen/dp_87"
+            android:layout_height="@dimen/dp_28"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_28"
+            android:layout_toRightOf="@+id/txt_guest_cancel"
+            android:background="@drawable/btn_light_blue_corner"
+            android:gravity="center"
+            android:text="@string/text_login"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_10" />
+    </RelativeLayout>
+
+</RelativeLayout>
