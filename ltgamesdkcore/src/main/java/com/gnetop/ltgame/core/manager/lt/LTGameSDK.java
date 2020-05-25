@@ -280,8 +280,8 @@ public class LTGameSDK {
             mSecret = PreferencesUtils.getString(context, Constants.LT_SDK_WX_SECRET_KEY);
         }
         object.setType(result.getType());
-        //object.setWxAppID(mAppID);
-        //object.setAppSecret(mSecret);
+        object.setWxAppID(mAppID);
+        object.setAppSecret(mSecret);
         LoginManager.login(context, Target.LOGIN_WX,
                 object, mOnLoginListener);
     }

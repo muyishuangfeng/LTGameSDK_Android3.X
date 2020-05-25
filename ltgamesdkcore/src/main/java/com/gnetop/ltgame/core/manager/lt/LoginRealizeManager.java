@@ -44,7 +44,6 @@ import okhttp3.RequestBody;
 public class LoginRealizeManager {
 
     private static final int SDK_VERSION = 100;
-    private static final String SDK_TEST = "1";
 
 
     /**
@@ -90,7 +89,7 @@ public class LoginRealizeManager {
             map.put("data", params);
 
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -194,7 +193,7 @@ public class LoginRealizeManager {
             params.put("access_token", access_token);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -334,7 +333,7 @@ public class LoginRealizeManager {
             map.put("data", params);
 
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -457,7 +456,7 @@ public class LoginRealizeManager {
             map.put("data", params);
 
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -587,7 +586,7 @@ public class LoginRealizeManager {
             map.put("data", params);
 
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -722,7 +721,7 @@ public class LoginRealizeManager {
             map.put("data", params);
 
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -979,7 +978,7 @@ public class LoginRealizeManager {
             params.put("goods_number", goods_number);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -1098,7 +1097,7 @@ public class LoginRealizeManager {
             params.put("token", purchaseToken);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -1214,7 +1213,7 @@ public class LoginRealizeManager {
                     .parse("application/json; charset=utf-8"), json);
 
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -1311,7 +1310,7 @@ public class LoginRealizeManager {
             params.put("email", mEmail);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -1631,7 +1630,7 @@ public class LoginRealizeManager {
             params.put("access_token", access_token);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -1761,7 +1760,7 @@ public class LoginRealizeManager {
             params.put("access_token", access_token);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -1881,7 +1880,7 @@ public class LoginRealizeManager {
             WeakHashMap<String, Object> params = new WeakHashMap<>();
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -2006,7 +2005,7 @@ public class LoginRealizeManager {
             params.put("code", code);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -2254,7 +2253,7 @@ public class LoginRealizeManager {
             params.put("username", userName);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -2373,7 +2372,7 @@ public class LoginRealizeManager {
             WeakHashMap<String, Object> params = new WeakHashMap<>();
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -2529,7 +2528,7 @@ public class LoginRealizeManager {
             params.put("server_number", server_number);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -2634,7 +2633,7 @@ public class LoginRealizeManager {
             }
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
@@ -2761,7 +2760,7 @@ public class LoginRealizeManager {
             }
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
             } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                 baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
             }
