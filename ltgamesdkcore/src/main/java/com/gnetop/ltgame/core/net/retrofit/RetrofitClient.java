@@ -31,7 +31,6 @@ public class RetrofitClient implements BaseApi {
     private volatile static Retrofit retrofit = null;
     private Retrofit.Builder retrofitBuilder = new Retrofit.Builder();
     private OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
-    private static final String SDK_TEST = "1";
     private Activity activity;
 
     public RetrofitClient(String baseUrl) {
@@ -115,7 +114,7 @@ public class RetrofitClient implements BaseApi {
                         mLtAppID = PreferencesUtils.getString(activity, Constants.LT_SDK_APP_ID);
                     }
                     if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
-                        baseURL = HttpUrl.parse(Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN);
+                        baseURL = HttpUrl.parse(Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN);
                     } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
                         baseURL = HttpUrl.parse(Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN);
                     }
