@@ -39,7 +39,6 @@ import static com.gnetop.ltgame.core.net.Api.WX_BASE_URL;
 public class WxLoginHelper {
 
 
-    private static final String SDK_TEST = "1";
     private static final String TAG = WxLoginHelper.class.getSimpleName();
 
     private int mLoginTarget;
@@ -336,7 +335,7 @@ public class WxLoginHelper {
             mLtAppID = PreferencesUtils.getString(mActivityRef.get(), Constants.LT_SDK_APP_ID);
         }
         if (options.getISServerTest().equals(Constants.LT_SERVER_TEST)) {
-            baseUrl = Api.TEST_SERVER_URL + SDK_TEST + Api.TEST_SERVER_DOMAIN;
+            baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
         } else if (options.getISServerTest().equals(Constants.LT_SERVER_OFFICIAL)) {
             baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
         }
