@@ -428,8 +428,7 @@ public class LTGameOptions {
             return this;
         }
 
-        public Builder setGP(String mPublicKey) {
-            this.mPublicKey = mPublicKey;
+        public Builder setGP() {
             this.isGPEnable = true;
             return this;
         }

@@ -75,7 +75,6 @@
         </activity>
 
         <!-- facebook登录-->
-        <!-- facebook登录-->
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />

@@ -12,7 +12,6 @@ import com.gnetop.ltgame.core.impl.OnRechargeStateListener;
 import com.gnetop.ltgame.core.manager.LoginManager;
 import com.gnetop.ltgame.core.manager.RechargeManager;
 import com.gnetop.ltgame.core.manager.login.fb.FacebookEventManager;
-import com.gnetop.ltgame.core.manager.recharge.gp.GooglePlayHelper;
 import com.gnetop.ltgame.core.manager.ui.LoginUIManager;
 import com.gnetop.ltgame.core.model.LoginObject;
 import com.gnetop.ltgame.core.model.RechargeObject;
@@ -129,7 +128,7 @@ public class LTGameSDK {
                                 .isServerTest(result.isServerTest())
                                 .setFBiD(result.getFBAppID())
                                 .setGoogle(result.getmGoogleClient())
-                                .setGP(result.getGPPublicKey())
+                                .setGP()
                                 .setGuest()
                                 .setCountryModel(result.getCountryModel())
                                 .setAgreementUrl(result.getAgreementUrl())
@@ -143,12 +142,10 @@ public class LTGameSDK {
                                 .setQQ(result.getQqAppID())
                                 .setAdID(mAdID)
                                 .build();
-                        addOrder((Activity) context, result.getGPPublicKey());
 
                         PreferencesUtils.putString(context, Constants.LT_SDK_APP_ID, result.getLTAppID());
                         PreferencesUtils.putString(context, Constants.LT_SDK_FB_APP_ID, result.getFBAppID());
                         PreferencesUtils.putString(context, Constants.LT_SDK_GOOGLE_CLIENT_ID, result.getmGoogleClient());
-                        PreferencesUtils.putString(context, Constants.LT_SDK_GP_PUBLIC_KEY, result.getGPPublicKey());
                         PreferencesUtils.putString(context, Constants.LT_SDK_PROVACY_URL, result.getPrivacyUrl());
                         PreferencesUtils.putString(context, Constants.LT_SDK_AGREEMENT_URL, result.getAgreementUrl());
                         PreferencesUtils.putString(context, Constants.LT_SDK_DEVICE_ADID, mAdID);
@@ -318,13 +315,6 @@ public class LTGameSDK {
         RechargeManager.recharge(activity, Target.RECHARGE_GOOGLE, object, mListener);
     }
 
-    /**
-     * 补单操作
-     */
-    private void addOrder(Activity activity, String mPublicKey) {
-        GooglePlayHelper mHelper = new GooglePlayHelper(activity, mPublicKey);
-        mHelper.queryOrder();
-    }
 
     /**
      * OneStore支付

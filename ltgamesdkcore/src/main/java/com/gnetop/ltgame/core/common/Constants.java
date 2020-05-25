@@ -87,8 +87,6 @@ public class Constants {
     public static final String LT_SDK_QQ_APP_ID = "LT_SDK_QQ_APP_ID";
     //Google平台申请的web版的clientID
     public static final String LT_SDK_GOOGLE_CLIENT_ID = "LT_SDK_GOOGLE_CLIENT_ID";
-    //Google支付公钥
-    public static final String LT_SDK_GP_PUBLIC_KEY = "LT_SDK_GP_PUBLIC_KEY";
     //onestore支付公钥
     public static final String LT_SDK_ONE_PUBLIC_KEY = "LT_SDK_ONE_PUBLIC_KEY";
     //隐私政策

@@ -11,10 +11,10 @@ public class Api extends RetrofitClient {
     //测试服务器
     public static final String TEST_SERVER_URL="http://";
     //测试服务器
-    public static final String TEST_SERVER_DOMAIN=".newtestgco.appcpi.com";
+    public static final String TEST_SERVER_DOMAIN=".sdk.appcpi.com";
 
     //正式服务器
-    public static final String FORMAL_SERVER_URL="https://";
+    public static final String FORMAL_SERVER_URL="http://";
     //正式服务器
     public static final String FORMAL_SERVER_DOMAIN=".sdk.appcpi.com";
     //微信域名
