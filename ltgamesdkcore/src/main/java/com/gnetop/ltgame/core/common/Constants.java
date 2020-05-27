@@ -75,6 +75,8 @@ public class Constants {
     public static final String GP_RECHARGE = "GP_RECHARGE";
     //oneStore支付
     public static final String ONE_STORE_RECHARGE = "ONE_STORE_RECHARGE";
+    //订单号
+    public static final String LT_ORDER_ID = "LT_ORDER_ID";
     //===============================公共参数==============================================//
 //===============================公共参数==============================================//
 //===============================公共参数==============================================//

@@ -23,23 +23,31 @@ public class RechargeResult extends Result {
 
     private RechargeResult(int state) {
         super(state);
+        this.state = state;
     }
 
 
     private RechargeResult(int state, BaseEntry<ResultModel> resultModel) {
         super(state, resultModel);
+        this.state = state;
+        this.resultModel = resultModel;
     }
 
     private RechargeResult(int state, OneStoreResult resultModel) {
         super(state, resultModel);
+        this.state = state;
+        this.oneStoreResult = resultModel;
     }
 
     private RechargeResult(int state, String msg) {
         super(state, msg);
+        this.state = state;
+        this.msg = msg;
     }
 
     private RechargeResult(int state, RechargeObject shareObj, int target) {
         super(state, target);
+        this.state = state;
         this.rechargeObject = shareObj;
     }
 
@@ -64,8 +72,8 @@ public class RechargeResult extends Result {
         RechargeResult result = new RechargeResult(LTResultCode.STATE_RECHARGE_SUCCESS_CODE, resultModel);
         result.resultModel = resultModel;
         return result;
-
     }
+
 
     public static RechargeResult successOf(int code, BaseEntry<ResultModel> resultModel) {
         RechargeResult result = new RechargeResult(code, resultModel);
