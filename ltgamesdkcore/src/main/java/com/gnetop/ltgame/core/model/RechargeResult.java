@@ -131,6 +131,10 @@ public class RechargeResult extends Result {
         return new RechargeResult(STATE_RECHARGE_COMPLETE, obj, target);
     }
 
+    public String getMsg(){
+        return msg;
+    }
+
 
     public static RechargeResult stateOf(int state) {
         return new RechargeResult(state);

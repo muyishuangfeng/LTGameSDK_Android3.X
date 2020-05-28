@@ -58,6 +58,7 @@ public class LoginUIFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void initView(View view) {
+        PreferencesUtils.init(mActivity);
         mDialog = new GeneralCenterDialog(mActivity);
 
         mLytGoogle = view.findViewById(R.id.lyt_login_google);
@@ -108,9 +109,6 @@ public class LoginUIFragment extends BaseFragment implements View.OnClickListene
                 mWXAppID = mData.getWxAppID();
                 mWXSecret = mData.getAppSecret();
                 mCountryModel = mData.getCountryModel();
-
-                Log.e("TAG","===LoginUIFragment========"+mData.toString());
-
                 if (mCountryModel != null) {
                     switch (mCountryModel) {
                         case Constants.LT_SDK_COUNTRY_ABROAD://国外
@@ -222,25 +220,25 @@ public class LoginUIFragment extends BaseFragment implements View.OnClickListene
                     case LTResultCode.STATE_GOOGLE_LOGIN_FAILED: //google登录失败
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_GOOGLE_LOGIN_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         dismissDialog();
                         break;
                     case LTResultCode.STATE_FB_LOGIN_FAILED: //Facebook登录失败
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_FB_LOGIN_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         dismissDialog();
                         break;
                     case LTResultCode.STATE_QQ_LOGIN_FAILED: //QQ登录失败
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_QQ_LOGIN_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         dismissDialog();
                         break;
                     case LTResultCode.STATE_WX_LOGIN_FAILED: //微信登录失败
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_WX_LOGIN_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         dismissDialog();
                         break;
                     case LTResultCode.STATE_GOOGLE_LOGIN_SUCCESS: //google登录成功
@@ -249,6 +247,7 @@ public class LoginUIFragment extends BaseFragment implements View.OnClickListene
                                     LTResultCode.STATE_GOOGLE_LOGIN_SUCCESS,
                                     result.getResultModel());
                             dismissDialog();
+                            PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "NO");
                             getProxyActivity().finish();
 
                         }
@@ -259,6 +258,7 @@ public class LoginUIFragment extends BaseFragment implements View.OnClickListene
                                     LTResultCode.STATE_FB_LOGIN_SUCCESS,
                                     result.getResultModel());
                             dismissDialog();
+                            PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "NO");
                             getProxyActivity().finish();
 
                         }
@@ -269,6 +269,7 @@ public class LoginUIFragment extends BaseFragment implements View.OnClickListene
                                     LTResultCode.STATE_QQ_LOGIN_SUCCESS,
                                     result.getResultModel());
                             dismissDialog();
+                            PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "NO");
                             getProxyActivity().finish();
 
                         }
@@ -279,6 +280,7 @@ public class LoginUIFragment extends BaseFragment implements View.OnClickListene
                                     LTResultCode.STATE_WX_LOGIN_SUCCESS,
                                     result.getResultModel());
                             dismissDialog();
+                            PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "NO");
                             getProxyActivity().finish();
 
                         }

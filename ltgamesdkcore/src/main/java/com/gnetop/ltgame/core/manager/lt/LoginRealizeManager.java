@@ -241,7 +241,7 @@ public class LoginRealizeManager {
 
 
                                     if (result.getData().getIs_register() == 1) {
-                                        FacebookEventManager.getInstance().register(context, 3);
+                                        FacebookEventManager.getInstance().register(context, 1);
                                     }
 
                                 } else {
@@ -379,7 +379,7 @@ public class LoginRealizeManager {
                                     }
 
                                     if (result.getData().getIs_register() == 1) {
-                                        FacebookEventManager.getInstance().register(context, 3);
+                                        FacebookEventManager.getInstance().register(context, 0);
                                     }
 
                                 } else {
@@ -501,7 +501,7 @@ public class LoginRealizeManager {
                                     }
 
                                     if (result.getData().getIs_register() == 1) {
-                                        FacebookEventManager.getInstance().register(context, 3);
+                                        FacebookEventManager.getInstance().register(context, 2);
                                     }
 
 
@@ -766,7 +766,7 @@ public class LoginRealizeManager {
                                     }
 
                                     if (result.getData().getIs_register() == 1) {
-                                        FacebookEventManager.getInstance().register(context, 3);
+                                        FacebookEventManager.getInstance().register(context, 4);
                                     }
 
 
@@ -891,7 +891,7 @@ public class LoginRealizeManager {
                                     }
 
                                     if (result.getData().getIs_register() == 1) {
-                                        FacebookEventManager.getInstance().register(context, 3);
+                                        FacebookEventManager.getInstance().register(context, 5);
                                     }
                                 } else {
                                     sendException(context, result.getCode(), "weChat_Login:" + result.getMsg(),
@@ -1024,9 +1024,8 @@ public class LoginRealizeManager {
                                 } else {
                                     sendRechargeException(context, result.getCode(), "Create_Order:" + result.getMsg(),
                                             result.getMsg(), mListener);
-                                    mListener.onState(context, RechargeResult.failOf(LTGameError.make(
-                                            LTResultCode.STATE_GP_CREATE_ORDER_FAILED, result.getMsg()
-                                    )));
+                                    mListener.onState(context, RechargeResult.failOf(
+                                            LTResultCode.STATE_GP_CREATE_ORDER_FAILED, result.getMsg()));
                                 }
                             }
                         }
@@ -1675,6 +1674,7 @@ public class LoginRealizeManager {
                                     }
 
                                 } else {
+                                    ToastUtil.getInstance().shortToast(context,result.getMsg());
                                     sendException(context, result.getCode(), "Bind_Google:" + result.getMsg(),
                                             result.getMsg(), mListener);
                                     if (mListener != null) {
@@ -1807,6 +1807,7 @@ public class LoginRealizeManager {
 
 
                                 } else {
+                                    ToastUtil.getInstance().shortToast(context,result.getMsg());
                                     sendException(context, result.getCode(), "Bind_Facebook:" + result.getMsg(),
                                             result.getMsg(), mListener);
                                     if (mListener != null) {
@@ -1926,6 +1927,7 @@ public class LoginRealizeManager {
                                     }
 
                                 } else {
+                                    ToastUtil.getInstance().shortToast(context,result.getMsg());
                                     sendException(context, result.getCode(), "Bind_Guest:" + result.getMsg(),
                                             result.getMsg(), mListener);
                                     if (mListener != null) {
@@ -2052,6 +2054,7 @@ public class LoginRealizeManager {
 
 
                                 } else {
+                                    ToastUtil.getInstance().shortToast(context,result.getMsg());
                                     sendException(context, result.getCode(), "Bind_Email:" + result.getMsg(),
                                             result.getMsg(), mListener);
                                     if (mListener != null) {

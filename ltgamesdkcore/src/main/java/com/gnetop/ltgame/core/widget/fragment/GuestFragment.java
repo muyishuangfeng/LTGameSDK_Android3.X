@@ -209,7 +209,7 @@ public class GuestFragment extends BaseFragment implements View.OnClickListener 
                     case LTResultCode.STATE_GUEST_LOGIN_FAILED:
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_GUEST_LOGIN_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         dismissDialog();
                         break;
                 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -34,7 +35,7 @@ public class FacebookLoginHelper {
 
     private static CallbackManager mFaceBookCallBack;
     private int mLoginTarget;
-    private  WeakReference<Activity> mActivityRef;
+    private WeakReference<Activity> mActivityRef;
     private OnLoginStateListener mListener;
     private String type;
 
@@ -137,6 +138,7 @@ public class FacebookLoginHelper {
      */
     private void getUserInfo(final Activity activity, AccessToken accessToken,
                              final OnLoginStateListener mListener) {
+
         GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {

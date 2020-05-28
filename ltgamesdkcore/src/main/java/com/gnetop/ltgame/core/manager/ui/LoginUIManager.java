@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.gnetop.ltgame.core.base.BaseEntry;
 import com.gnetop.ltgame.core.common.Constants;
@@ -98,6 +99,8 @@ public class LoginUIManager {
                     });
 
                 }
+            }else {
+                login(activity, object, mListener);
             }
         } else {
             login(activity, object, mListener);
@@ -136,6 +139,7 @@ public class LoginUIManager {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 mListener.onLoginOut();
+                login(activity,result,mListener);
             }
         });
     }
@@ -275,11 +279,12 @@ public class LoginUIManager {
         LoginObject object = new LoginObject();
         PreferencesUtils.init(context);
         String mAppID = "";
-        if (!TextUtils.isEmpty(result.getFBAppID())) {
-            mAppID = result.getFBAppID();
+        if (!TextUtils.isEmpty(result.getmGoogleClient())) {
+            mAppID = result.getmGoogleClient();
         } else if (!TextUtils.isEmpty(PreferencesUtils.getString(context, Constants.LT_SDK_GOOGLE_CLIENT_ID))) {
             mAppID = PreferencesUtils.getString(context, Constants.LT_SDK_GOOGLE_CLIENT_ID);
         }
+        Log.e("TAG",mAppID);
         object.setmGoogleClient(mAppID);
         object.setType(Constants.GOOGLE_UI_TOKEN);
         LoginManager.login(context, Target.LOGIN_GOOGLE,

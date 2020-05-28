@@ -61,6 +61,10 @@ public class FacebookEventManager {
             params.putString(AppEventsConstants.EVENT_PARAM_REGISTRATION_METHOD, "Guest");
         }else if (code == 3) {
             params.putString(AppEventsConstants.EVENT_PARAM_REGISTRATION_METHOD, "Email");
+        }else if (code == 4) {
+            params.putString(AppEventsConstants.EVENT_PARAM_REGISTRATION_METHOD, "QQ");
+        }else if (code == 5) {
+            params.putString(AppEventsConstants.EVENT_PARAM_REGISTRATION_METHOD, "weChat");
         }
         logger.logEvent(AppEventsConstants.EVENT_NAME_COMPLETED_REGISTRATION, params);
     }

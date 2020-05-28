@@ -94,8 +94,7 @@ public class LTGameSDK {
     /**
      * 支付
      */
-    public void recharge(Activity context,
-                         RechargeObject result, OnRechargeStateListener mOnLoginListener) {
+    public void recharge(Activity context, RechargeObject result, OnRechargeStateListener mOnLoginListener) {
         if (result != null) {
             switch (result.getRechargeType()) {
                 case Constants.GP_RECHARGE: {//google支付
@@ -113,8 +112,7 @@ public class LTGameSDK {
     /**
      * 初始化登录
      */
-    public void init(Context context,
-                     LoginObject result) {
+    public void init(Context context, LoginObject result) {
         FacebookEventManager.getInstance().start(context, result.getFBAppID());
         PreferencesUtils.init(context);
         Executors.newSingleThreadExecutor().execute(new Runnable() {
@@ -135,7 +133,6 @@ public class LTGameSDK {
                                 .setPrivacyUrl(result.getPrivacyUrl())
                                 .setPrivacyUrl(result.getPrivacyUrl())
                                 .setTokenTime(result.getTokenTime())
-                                //.setOneStore(result.getOneStorePublicKey())
                                 .setWX(result.getWxAppID(), result.getAppSecret())
                                 .appID(result.getLTAppID())
                                 .emailEnable()

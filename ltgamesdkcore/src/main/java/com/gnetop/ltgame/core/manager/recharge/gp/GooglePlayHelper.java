@@ -314,7 +314,7 @@ public class GooglePlayHelper {
                                         }
                                     } else {
                                         mListener.onState(mActivityRef.get(),
-                                                RechargeResult.failOf(result.getResultModel().getMsg()));
+                                                RechargeResult.failOf(result.getMsg()));
                                         mActivityRef.get().finish();
                                         activity.finish();
                                     }

@@ -227,7 +227,7 @@ public class GuestTurnFragment extends BaseFragment implements View.OnClickListe
                     case LTResultCode.STATE_GUEST_LOGIN_FAILED:
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_GUEST_LOGIN_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         dismissDialog();
                         break;
                 }

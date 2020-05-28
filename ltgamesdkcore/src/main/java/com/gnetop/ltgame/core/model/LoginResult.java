@@ -69,7 +69,6 @@ public class LoginResult extends Result {
     }
 
 
-
     public static LoginResult successOf(LTGameError error) {
         LoginResult result = new LoginResult();
         result.error = error;
@@ -96,6 +95,7 @@ public class LoginResult extends Result {
         result.msg = msg;
         return result;
     }
+
     public static LoginResult failOf(int code) {
         LoginResult result = new LoginResult(code);
         result.state = code;
@@ -129,6 +129,10 @@ public class LoginResult extends Result {
 
     public BaseEntry getBaseEntry() {
         return baseEntry;
+    }
+
+    public String getMsg() {
+        return msg;
     }
 
 

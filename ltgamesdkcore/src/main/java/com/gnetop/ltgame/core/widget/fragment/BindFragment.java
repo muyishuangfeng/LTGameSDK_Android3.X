@@ -2,7 +2,6 @@ package com.gnetop.ltgame.core.widget.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -201,10 +200,6 @@ public class BindFragment extends BaseFragment implements View.OnClickListener {
             public void onState(Activity activity, LoginResult result) {
                 switch (result.state) {
                     case LTResultCode.STATE_GOOGLE_UI_TOKEN: //google获取信息
-                        Log.e("TAG", "STATE_GOOGLE_UI_TOKEN=====" +
-                                result.getResultModel().getData().getId() + "==" +
-                                result.getResultModel().getData().getEmali() + "==" +
-                                result.getResultModel().getData().getNickName() + "==");
                         if (result.getResultModel() != null) {
                             showDialog(getResources().getString(R.string.text_loading));
                             LoginUIManager.getInstance().googleBind(mActivity,
@@ -249,7 +244,7 @@ public class BindFragment extends BaseFragment implements View.OnClickListener {
                         break;
                     case LTResultCode.STATE_GOOGLE_BIND_FAILED: //google绑定失败
                         LoginUIManager.getInstance().setResultFailed(activity,
-                                LTResultCode.STATE_GOOGLE_BIND_FAILED, "Google Bind Failed");
+                                LTResultCode.STATE_GOOGLE_BIND_FAILED, result.getMsg());
                         PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "YES");
                         dismissDialog();
 
@@ -257,21 +252,21 @@ public class BindFragment extends BaseFragment implements View.OnClickListener {
                     case LTResultCode.STATE_FB_BIND_FAILED: //Facebook绑定失败
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_FB_BIND_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "YES");
                         dismissDialog();
                         break;
                     case LTResultCode.STATE_QQ_BIND_FAILED: //QQ绑定失败
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_QQ_BIND_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "YES");
                         dismissDialog();
                         break;
                     case LTResultCode.STATE_WX_BIND_FAILED: //微信绑定失败
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_WX_BIND_FAILED,
-                                result.getResultModel().getMsg());
+                                result.getMsg());
                         PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "YES");
                         dismissDialog();
                         break;
@@ -310,8 +305,7 @@ public class BindFragment extends BaseFragment implements View.OnClickListener {
                     case LTResultCode.STATE_GOOGLE_ALREADY_BIND: //已经绑定了Google
                         LoginUIManager.getInstance().setResultFailed(activity,
                                 LTResultCode.STATE_GOOGLE_ALREADY_BIND,
-                                result.getResultModel().getMsg());
-
+                                result.getMsg());
                         PreferencesUtils.putString(mActivity, Constants.USER_GUEST_FLAG, "YES");
                         dismissDialog();
 
