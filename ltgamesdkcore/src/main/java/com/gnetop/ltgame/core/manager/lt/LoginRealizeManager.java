@@ -935,7 +935,7 @@ public class LoginRealizeManager {
      * @param mListener     接口
      */
     public static void createOrder(final Activity context, int role_number, int server_number,
-                                   String goods_number,
+                                   String goods_number, Map<String, Object> customMap,
                                    final OnRechargeStateListener mListener) {
         LTGameOptions options = LTGameCommon.getInstance().options();
         String mLtAppID = "";
@@ -976,6 +976,7 @@ public class LoginRealizeManager {
             params.put("role_number", role_number);
             params.put("server_number", server_number);
             params.put("goods_number", goods_number);
+            params.put("custom_data", customMap);
             map.put("data", params);
             if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
                 baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
@@ -1674,7 +1675,7 @@ public class LoginRealizeManager {
                                     }
 
                                 } else {
-                                    ToastUtil.getInstance().shortToast(context,result.getMsg());
+                                    ToastUtil.getInstance().shortToast(context, result.getMsg());
                                     sendException(context, result.getCode(), "Bind_Google:" + result.getMsg(),
                                             result.getMsg(), mListener);
                                     if (mListener != null) {
@@ -1807,7 +1808,7 @@ public class LoginRealizeManager {
 
 
                                 } else {
-                                    ToastUtil.getInstance().shortToast(context,result.getMsg());
+                                    ToastUtil.getInstance().shortToast(context, result.getMsg());
                                     sendException(context, result.getCode(), "Bind_Facebook:" + result.getMsg(),
                                             result.getMsg(), mListener);
                                     if (mListener != null) {
@@ -1927,7 +1928,7 @@ public class LoginRealizeManager {
                                     }
 
                                 } else {
-                                    ToastUtil.getInstance().shortToast(context,result.getMsg());
+                                    ToastUtil.getInstance().shortToast(context, result.getMsg());
                                     sendException(context, result.getCode(), "Bind_Guest:" + result.getMsg(),
                                             result.getMsg(), mListener);
                                     if (mListener != null) {
@@ -2054,7 +2055,7 @@ public class LoginRealizeManager {
 
 
                                 } else {
-                                    ToastUtil.getInstance().shortToast(context,result.getMsg());
+                                    ToastUtil.getInstance().shortToast(context, result.getMsg());
                                     sendException(context, result.getCode(), "Bind_Email:" + result.getMsg(),
                                             result.getMsg(), mListener);
                                     if (mListener != null) {

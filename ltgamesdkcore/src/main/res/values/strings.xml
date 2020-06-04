@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">LTGameSDK</string>
-
     <string name="text_login_way">Please select login method</string>
     <string name="text_privacy">Read &amp; Accept the </string>
     <string name="text_agreement">Read &amp; Accept the</string>

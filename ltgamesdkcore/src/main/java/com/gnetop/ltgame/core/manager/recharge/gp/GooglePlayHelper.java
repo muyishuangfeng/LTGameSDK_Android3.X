@@ -30,6 +30,7 @@ import com.gnetop.ltgame.core.util.PreferencesUtils;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GooglePlayHelper {
     private static final String TAG = GooglePlayHelper.class.getSimpleName();
@@ -48,21 +49,22 @@ public class GooglePlayHelper {
     private BillingClient mBillingClient;
     private int mPayTest;
     private String mConsume = "0";
+    //自定义参数
+    private Map<String, Object> mParams;
 
     GooglePlayHelper(Activity activity, int role_number,
-                     int server_number, String goods_number, int mPayTest,
+                     int server_number, String goods_number, Map<String, Object> mParams, int mPayTest,
                      String sku, OnRechargeStateListener mListener) {
         this.mActivityRef = new WeakReference<>(activity);
         this.role_number = role_number;
         this.server_number = server_number;
         this.goods_number = goods_number;
+        this.mParams = mParams;
         this.mSku = sku;
         this.mPayTest = mPayTest;
         this.mRechargeTarget = Target.RECHARGE_GOOGLE;
         this.mListener = mListener;
     }
-
-
 
 
     /**
@@ -298,6 +300,7 @@ public class GooglePlayHelper {
      */
     private void getLTOrderID() {
         LoginRealizeManager.createOrder(mActivityRef.get(), role_number, server_number, goods_number,
+                mParams,
                 new OnRechargeStateListener() {
 
                     @Override
@@ -346,7 +349,7 @@ public class GooglePlayHelper {
                                             result.getResultModel().getData().getOrder_number());
                                     mListener.onState(mActivityRef.get(), RechargeResult
                                             .successOf(result.getResultModel()));
-                                }else {
+                                } else {
                                     queryHistory();
                                 }
                             }

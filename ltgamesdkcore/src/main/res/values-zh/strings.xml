@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">LTGameSDK</string>
     <string name="text_login_way">请选择一种登录方式</string>
     <string name="text_login">登录</string>
     <string name="text_google">Sign in with Google</string>

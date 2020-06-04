@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">LTGameSDK</string>
     <string name="text_login_way">Please select login method</string>
     <string name="text_login">Login</string>
     <string name="text_facebook">Sign in with Facebook</string>
