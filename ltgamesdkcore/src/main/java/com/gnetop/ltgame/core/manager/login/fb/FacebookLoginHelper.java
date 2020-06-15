@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -87,7 +86,7 @@ public class FacebookLoginHelper {
             mFaceBookCallBack = CallbackManager.Factory.create();
             LoginManager.getInstance()
                     .logInWithReadPermissions(mActivityRef.get(),
-                            Arrays.asList("public_profile"));
+                            Arrays.asList("public_profile", "email"));
             if (mFaceBookCallBack != null) {
                 LoginManager.getInstance().registerCallback(mFaceBookCallBack,
                         new FacebookCallback<LoginResult>() {
@@ -144,22 +143,36 @@ public class FacebookLoginHelper {
             public void onCompleted(JSONObject object, GraphResponse response) {
                 if (object != null) {
                     String id = object.optString("id");   //比如:1565455221565
-                    String emali = object.optString("email");  //邮箱：比如：56236545@qq.com
+                    String email = object.optString("email");  //邮箱：比如：56236545@qq.com
                     String name = object.optString("name");  //比如：Zhang San
                     if (!TextUtils.isEmpty(type)) {
                         switch (type) {
                             case Constants.FB_LOGIN: //登录
-                                LoginRealizeManager.facebookLogin(activity, id, emali, name, accessToken.getToken(), mListener);
-                                mActivityRef.get().finish();
+                                if (!TextUtils.isEmpty(email)) {
+                                    LoginRealizeManager.facebookLogin(activity, id, email, name, accessToken.getToken(), mListener);
+                                    mActivityRef.get().finish();
+                                } else {
+                                    LoginRealizeManager.facebookLogin(activity, id, id, name, accessToken.getToken(), mListener);
+                                    mActivityRef.get().finish();
+                                }
                                 break;
                             case Constants.FB_BIND: //绑定
-                                LoginRealizeManager.bindFB(activity, id, emali, name, accessToken.getToken(), mListener);
-                                mActivityRef.get().finish();
+                                if (!TextUtils.isEmpty(email)) {
+                                    LoginRealizeManager.bindFB(activity, id, email, name, accessToken.getToken(), mListener);
+                                    mActivityRef.get().finish();
+                                } else {
+                                    LoginRealizeManager.bindFB(activity, id, id, name, accessToken.getToken(), mListener);
+                                    mActivityRef.get().finish();
+                                }
                                 break;
                             case Constants.FB_UI_TOKEN://获取token
                                 BaseEntry<ResultModel> resultModelBaseEntry = new BaseEntry<>();
                                 ResultModel model = new ResultModel();
-                                model.setEmali(emali);
+                                if (!TextUtils.isEmpty(email)) {
+                                    model.setEmali(email);
+                                } else {
+                                    model.setEmali(id);
+                                }
                                 model.setId(id);
                                 model.setNickName(name);
                                 model.setAccessToken(accessToken.getToken());

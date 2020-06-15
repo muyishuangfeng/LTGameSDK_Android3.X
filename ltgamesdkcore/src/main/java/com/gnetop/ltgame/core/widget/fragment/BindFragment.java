@@ -2,6 +2,7 @@ package com.gnetop.ltgame.core.widget.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -214,12 +215,22 @@ public class BindFragment extends BaseFragment implements View.OnClickListener {
                     case LTResultCode.STATE_FB_UI_TOKEN: //Facebook获取信息
                         if (result.getResultModel() != null) {
                             showDialog(getResources().getString(R.string.text_loading));
-                            LoginUIManager.getInstance().fbBind(mActivity,
-                                    result.getResultModel().getData().getId(),
-                                    result.getResultModel().getData().getEmali(),
-                                    result.getResultModel().getData().getNickName(),
-                                    result.getResultModel().getData().getAccessToken(),
-                                    mListener);
+                            if (!TextUtils.isEmpty(result.getResultModel().getData().getEmali())) {
+                                LoginUIManager.getInstance().fbBind(mActivity,
+                                        result.getResultModel().getData().getId(),
+                                        result.getResultModel().getData().getEmali(),
+                                        result.getResultModel().getData().getNickName(),
+                                        result.getResultModel().getData().getAccessToken(),
+                                        mListener);
+                            } else {
+                                LoginUIManager.getInstance().fbBind(mActivity,
+                                        result.getResultModel().getData().getId(),
+                                        result.getResultModel().getData().getId(),
+                                        result.getResultModel().getData().getNickName(),
+                                        result.getResultModel().getData().getAccessToken(),
+                                        mListener);
+                            }
+
                         }
                         break;
                     case LTResultCode.STATE_QQ_UI_TOKEN: //QQ获取信息

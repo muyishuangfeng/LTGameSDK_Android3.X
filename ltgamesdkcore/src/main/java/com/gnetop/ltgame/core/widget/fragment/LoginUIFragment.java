@@ -186,12 +186,21 @@ public class LoginUIFragment extends BaseFragment implements View.OnClickListene
                     case LTResultCode.STATE_FB_UI_TOKEN: //Facebook获取信息
                         if (result.getResultModel() != null) {
                             showDialog(getResources().getString(R.string.text_loading));
-                            LoginUIManager.getInstance().fbLogin(mActivity,
-                                    result.getResultModel().getData().getId(),
-                                    result.getResultModel().getData().getEmali(),
-                                    result.getResultModel().getData().getNickName(),
-                                    result.getResultModel().getData().getAccessToken(),
-                                    mListener);
+                            if (!TextUtils.isEmpty(result.getResultModel().getData().getEmali())) {
+                                LoginUIManager.getInstance().fbLogin(mActivity,
+                                        result.getResultModel().getData().getId(),
+                                        result.getResultModel().getData().getEmali(),
+                                        result.getResultModel().getData().getNickName(),
+                                        result.getResultModel().getData().getAccessToken(),
+                                        mListener);
+                            } else {
+                                LoginUIManager.getInstance().fbLogin(mActivity,
+                                        result.getResultModel().getData().getId(),
+                                        result.getResultModel().getData().getId(),
+                                        result.getResultModel().getData().getNickName(),
+                                        result.getResultModel().getData().getAccessToken(),
+                                        mListener);
+                            }
                         }
 
                         break;

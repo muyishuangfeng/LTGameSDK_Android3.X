@@ -31,7 +31,7 @@
         <EditText
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
+            android:layout_height="@dimen/dp_28"
             android:background="@drawable/bg_edit"
             android:gravity="center_vertical"
             android:hint="@string/text_hint_email"
@@ -44,8 +44,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:layout_marginTop="@dimen/dp_14"
+            android:layout_height="@dimen/dp_28"
+            android:layout_marginTop="@dimen/dp_8"
             android:background="@drawable/bg_edit"
             android:paddingLeft="@dimen/dp_14"
             android:paddingRight="@dimen/dp_14">
@@ -78,11 +78,12 @@
             <com.gnetop.ltgame.core.ui.CountDownButton
                 android:id="@+id/btn_count_down"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_40"
+                android:layout_height="@dimen/dp_28"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="@string/text_send"
                 android:textAllCaps="false"
+                android:textSize="@dimen/sp_10"
                 android:textColor="@color/colorBlue" />
         </RelativeLayout>
 
