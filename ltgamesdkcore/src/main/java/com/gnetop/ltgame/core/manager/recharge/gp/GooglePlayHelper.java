@@ -215,6 +215,7 @@ public class GooglePlayHelper {
                                         BillingFlowParams purchaseParams =
                                                 BillingFlowParams.newBuilder()
                                                         .setSkuDetails(skuDetails)
+                                                        .setDeveloperId(mOrderID)
                                                         .build();
                                         mBillingClient.launchBillingFlow(mActivityRef.get(), purchaseParams);
                                     }
