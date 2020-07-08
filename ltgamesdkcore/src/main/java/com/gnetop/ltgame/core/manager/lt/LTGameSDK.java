@@ -12,6 +12,7 @@ import com.gnetop.ltgame.core.impl.OnRechargeStateListener;
 import com.gnetop.ltgame.core.manager.LoginManager;
 import com.gnetop.ltgame.core.manager.RechargeManager;
 import com.gnetop.ltgame.core.manager.login.fb.FacebookEventManager;
+import com.gnetop.ltgame.core.manager.recharge.gp.GooglePlayHelper;
 import com.gnetop.ltgame.core.manager.ui.LoginUIManager;
 import com.gnetop.ltgame.core.model.LoginObject;
 import com.gnetop.ltgame.core.model.RechargeObject;
@@ -19,6 +20,7 @@ import com.gnetop.ltgame.core.platform.Target;
 import com.gnetop.ltgame.core.util.DeviceUtils;
 import com.gnetop.ltgame.core.util.PreferencesUtils;
 
+import java.util.ConcurrentModificationException;
 import java.util.concurrent.Executors;
 
 /**
@@ -155,6 +157,7 @@ public class LTGameSDK {
                         PreferencesUtils.putString(context, Constants.LT_SDK_COUNTRY_MODEL, result.getCountryModel());
                         LTGameCommon.getInstance().init(options);
                         LoginRealizeManager.getTime(context);
+                        addOrder(context, result.getPayTest());
 
 //                        CrashHandler.getInstance().init(context, LTGameCommon.options().getCacheDir() +
 //                                "/Crash/log/");
@@ -344,4 +347,11 @@ public class LTGameSDK {
         LoginRealizeManager.autoLogin(activity, mListener);
     }
 
+    /**
+     * 补单操作
+     */
+    public void addOrder(Context context, int mPayTest) {
+        GooglePlayHelper mHelper = new GooglePlayHelper((Activity) context, mPayTest);
+        mHelper.addOrder();
+    }
 }

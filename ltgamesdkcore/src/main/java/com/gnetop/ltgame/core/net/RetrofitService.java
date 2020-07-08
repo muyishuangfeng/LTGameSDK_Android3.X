@@ -340,5 +340,18 @@ public interface RetrofitService {
                                                @Header("app_id") String Long,
                                                @Body Map<String, Object> map);
 
+    /**
+     * google支付错误信息上传
+     */
+    @Headers({"Content-Type:application/json",
+            "Accept-Charset:utf-8",
+            "urlname:manage"})
+    @POST("/v1/order/exception_store")
+    Observable<BaseEntry<ResultModel>> googlePlayFailed(@Header("language") String LTAppID,
+                                                        @Header("token") String LTToken,
+                                                        @Header("tsp") int LTTime,
+                                                        @Header("app_id") String Long,
+                                                        @Body Map<String, Object> map);
+
 
 }

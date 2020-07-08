@@ -248,6 +248,11 @@ public class LTResultCode {
     public static final int STATE_GET_SERVER_FAILED = BASE_CODE + 96;
     //获取服务器时间成功
     public static final int STATE_GET_SERVER_SUCCESS = BASE_CODE + 97;
+    //上传Google异常日志成功
+    public static final int STATE_SEND_GOOGLE_EXCEPTION_SUCCESS = BASE_CODE + 98;
+    //上传Google异常日志失败
+    public static final int STATE_SEND_GOOGLE_EXCEPTION_FAILED = BASE_CODE + 99;
+
 
     //成功信息
     public static final String MSG_STATE_SUCCESS = "SUCCESS";

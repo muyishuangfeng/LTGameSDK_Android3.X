@@ -43,6 +43,7 @@ public class LoginObject implements Serializable {
     private int server_number;//   服务器编号
     private boolean debug;//   是否是debug模式
     private int tokenTime;//token保存时间
+    private int mPayTest;//是否是沙盒测试
 
     public int getTokenTime() {
         return tokenTime;
@@ -329,6 +330,15 @@ public class LoginObject implements Serializable {
         this.mStats = mStats;
     }
 
+
+    public int getPayTest() {
+        return mPayTest;
+    }
+
+    public void setPayTest(int mPayTest) {
+        this.mPayTest = mPayTest;
+    }
+
     @Override
     public String toString() {
         return "LoginObject{" +
@@ -366,6 +376,8 @@ public class LoginObject implements Serializable {
                 ", role_create_time=" + role_create_time +
                 ", server_number=" + server_number +
                 ", debug=" + debug +
+                ", tokenTime=" + tokenTime +
+                ", mPayTest=" + mPayTest +
                 '}';
     }
 }

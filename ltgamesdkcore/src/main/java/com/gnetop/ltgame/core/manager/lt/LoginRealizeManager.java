@@ -2837,5 +2837,125 @@ public class LoginRealizeManager {
 
         }
     }
+    /**
+     * 发送Google异常日志信息
+     */
+    public static void sendGooglePlayFailed(final Context context, String orderNumber, String token,
+                                            String transaction_id,
+                                            int mTest, String response_data,
+                                            final OnRechargeStateListener mListener) {
+        LTGameOptions options = LTGameCommon.getInstance().options();
+        String mLtAppID = "";
+        String mADID = "";
+        String baseUrl = "";
+        String mServerTest = "";
+        if (!TextUtils.isEmpty(options.getLtAppId())) {
+            mLtAppID = options.getLtAppId();
+        } else if (!TextUtils.isEmpty(PreferencesUtils.getString(context, Constants.LT_SDK_APP_ID))) {
+            mLtAppID = PreferencesUtils.getString(context, Constants.LT_SDK_APP_ID);
+        }
+        if (!TextUtils.isEmpty(options.getAdID())) {
+            mADID = options.getAdID();
+        } else if (!TextUtils.isEmpty(PreferencesUtils.getString(context, Constants.LT_SDK_DEVICE_ADID))) {
+            mADID = PreferencesUtils.getString(context, Constants.LT_SDK_DEVICE_ADID);
+        }
+        if (!TextUtils.isEmpty(options.getISServerTest())) {
+            mServerTest = options.getISServerTest();
+        } else if (!TextUtils.isEmpty(PreferencesUtils.getString(context, Constants.LT_SDK_SERVER_TEST_TAG))) {
+            mServerTest = PreferencesUtils.getString(context, Constants.LT_SDK_SERVER_TEST_TAG);
+        }
 
+
+        if (!TextUtils.isEmpty(options.getLtAppId()) &&
+                !TextUtils.isEmpty(options.getAdID()) &&
+                !TextUtils.isEmpty(PreferencesUtils.getString(context, Constants.USER_LT_UID_KEY))) {
+            long LTTime = System.currentTimeMillis() / 1000L;
+            Map<String, Object> map = new WeakHashMap<>();
+            map.put("dpt", 2);
+            map.put("vid", SDK_VERSION);
+            map.put("udid", mADID);
+            map.put("adid", mADID);
+            map.put("bid", AppUtil.getPackageName(context));
+            map.put("ukey", PreferencesUtils.getString(context, Constants.USER_LT_UID_KEY));
+            WeakHashMap<String, Object> params = new WeakHashMap<>();
+            params.put("order_number", orderNumber);
+            params.put("token", token);
+            params.put("transaction_id", transaction_id);
+            params.put("is_test", mTest);
+            params.put("response_data", response_data);
+            map.put("data", params);
+            if (mServerTest.equals(Constants.LT_SERVER_TEST)) {
+                baseUrl = Api.TEST_SERVER_URL + mLtAppID + Api.TEST_SERVER_DOMAIN;
+            } else if (mServerTest.equals(Constants.LT_SERVER_OFFICIAL)) {
+                baseUrl = Api.FORMAL_SERVER_URL + mLtAppID + Api.FORMAL_SERVER_DOMAIN;
+            }
+
+            String finalMADID = mADID;
+            String finalMLtAppID = mLtAppID;
+            String finalBaseUrl = baseUrl;
+            Api.getInstance((Activity) context, baseUrl)
+                    .getTime(AppUtil.getLanguage(), "", (int) LTTime, mLtAppID, map)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
+                    .flatMap(new Function<BaseEntry<ResultModel>, ObservableSource<BaseEntry<ResultModel>>>() {
+                        @Override
+                        public ObservableSource<BaseEntry<ResultModel>> apply(BaseEntry<ResultModel> resultModelBaseEntry) throws Exception {
+                            if (resultModelBaseEntry.getCode() == 0) {
+                                String mLTToken = MD5Util.md5Decode(
+                                        DateUtil.getTimeStamp(resultModelBaseEntry.getData().getTime())
+                                                + finalMADID + finalMADID +
+                                                AppUtil.getPackageName(context) + 123).substring(3, 28);
+                                return Api.getInstance((Activity) context, finalBaseUrl)
+                                        .googlePlayFailed(AppUtil.getLanguage(), mLTToken, (int) LTTime, finalMLtAppID, map);
+                            } else {
+                                mListener.onState((Activity) context, RechargeResult.failOf(
+                                        LTResultCode.STATE_GET_SERVER_FAILED,
+                                        resultModelBaseEntry.getMsg()));
+                            }
+                            return null;
+                        }
+                    }).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<BaseEntry<ResultModel>>() {
+
+
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(BaseEntry<ResultModel> result) {
+                            if (result != null) {
+                                if (result.getCode() == 0) {
+                                    if (mListener != null) {
+                                        mListener.onState((Activity) context, RechargeResult.successOf(
+                                                LTResultCode.STATE_SEND_GOOGLE_EXCEPTION_SUCCESS,
+                                                result));
+                                    }
+
+                                } else {
+                                    if (mListener != null) {
+                                        mListener.onState((Activity) context, RechargeResult.failOf(
+                                                LTResultCode.STATE_SEND_GOOGLE_EXCEPTION_FAILED,
+                                                result.getMsg()));
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            mListener.onState((Activity) context,
+                                    RechargeResult.failOf(ExceptionHelper.handleException(e)));
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+
+                    });
+
+        }
+    }
 }

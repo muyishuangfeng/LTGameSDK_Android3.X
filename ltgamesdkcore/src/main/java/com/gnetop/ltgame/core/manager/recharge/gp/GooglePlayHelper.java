@@ -11,8 +11,6 @@ import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ConsumeParams;
 import com.android.billingclient.api.ConsumeResponseListener;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchaseHistoryRecord;
-import com.android.billingclient.api.PurchaseHistoryResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
@@ -66,6 +64,11 @@ public class GooglePlayHelper {
         this.mListener = mListener;
     }
 
+    public GooglePlayHelper(Activity activity, int mPayTest) {
+        this.mActivityRef = new WeakReference<>(activity);
+        this.mPayTest = mPayTest;
+    }
+
 
     /**
      * 初始化
@@ -112,6 +115,7 @@ public class GooglePlayHelper {
                 mActivityRef.get().finish();
             }
         }
+
     }
 
 
@@ -127,7 +131,7 @@ public class GooglePlayHelper {
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     for (Purchase purchase : list) {
                         mConsume = "2";
-                        consume(purchase.getPurchaseToken());
+                        uploadToServer(purchase.getPurchaseToken(), purchase.getOrderId(),mOrderID, mPayTest);
                     }
 
                 }
@@ -215,7 +219,8 @@ public class GooglePlayHelper {
                                         BillingFlowParams purchaseParams =
                                                 BillingFlowParams.newBuilder()
                                                         .setSkuDetails(skuDetails)
-                                                        .setDeveloperId(mOrderID)
+                                                        .setObfuscatedAccountId(role_number + "")
+                                                        .setObfuscatedProfileId(mOrderID)
                                                         .build();
                                         mBillingClient.launchBillingFlow(mActivityRef.get(), purchaseParams);
                                     }
@@ -235,19 +240,42 @@ public class GooglePlayHelper {
      * 消耗
      */
     private void consume(String purchaseToken) {
-        ConsumeParams consumeParams =
-                ConsumeParams.newBuilder()
-                        .setDeveloperPayload(mOrderID)
-                        .setPurchaseToken(purchaseToken)
-                        .build();
-        mBillingClient.consumeAsync(consumeParams, new ConsumeResponseListener() {
+        if (mBillingClient.isReady()) {
+            ConsumeParams consumeParams = ConsumeParams.newBuilder()
+                    .setPurchaseToken(purchaseToken)
+                    .build();
+            mBillingClient.consumeAsync(consumeParams, new ConsumeResponseListener() {
+                @Override
+                public void onConsumeResponse(BillingResult billingResult, String s) {
 
-            @Override
-            public void onConsumeResponse(BillingResult billingResult, String s) {
+                }
+            });
+        } else {
+            mBillingClient.startConnection(new BillingClientStateListener() {
+                @Override
+                public void onBillingSetupFinished(BillingResult billingResult) {
+                    if (billingResult != null) {
+                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                            ConsumeParams consumeParams = ConsumeParams.newBuilder()
+                                    .setPurchaseToken(purchaseToken)
+                                    .build();
+                            mBillingClient.consumeAsync(consumeParams, new ConsumeResponseListener() {
+                                @Override
+                                public void onConsumeResponse(BillingResult billingResult, String s) {
 
-            }
-        });
-        uploadToServer(purchaseToken, mOrderID, mPayTest);
+                                }
+                            });
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onBillingServiceDisconnected() {
+                }
+            });
+        }
+
 
     }
 
@@ -255,21 +283,44 @@ public class GooglePlayHelper {
      * 消耗
      */
     private void consume2(String purchaseToken) {
-        ConsumeParams consumeParams =
-                ConsumeParams.newBuilder()
-                        .setDeveloperPayload(PreferencesUtils.getString(mActivityRef.get(), Constants.LT_ORDER_ID))
-                        .setPurchaseToken(purchaseToken)
-                        .build();
-        mBillingClient.consumeAsync(consumeParams, new ConsumeResponseListener() {
+        if (mBillingClient.isReady()) {
+            ConsumeParams consumeParams = ConsumeParams.newBuilder()
+                    .setPurchaseToken(purchaseToken)
+                    .build();
+            mBillingClient.consumeAsync(consumeParams, new ConsumeResponseListener() {
+                @Override
+                public void onConsumeResponse(BillingResult billingResult, String s) {
 
-            @Override
-            public void onConsumeResponse(BillingResult billingResult, String s) {
-                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                    uploadToServer2(purchaseToken, PreferencesUtils.getString(mActivityRef.get(), Constants.LT_ORDER_ID),
-                            mPayTest);
                 }
-            }
-        });
+            });
+            recharge();
+        } else {
+            mBillingClient.startConnection(new BillingClientStateListener() {
+                @Override
+                public void onBillingSetupFinished(BillingResult billingResult) {
+                    if (billingResult != null) {
+                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                            ConsumeParams consumeParams = ConsumeParams.newBuilder()
+                                    .setPurchaseToken(purchaseToken)
+                                    .build();
+                            mBillingClient.consumeAsync(consumeParams, new ConsumeResponseListener() {
+                                @Override
+                                public void onConsumeResponse(BillingResult billingResult, String s) {
+
+                                }
+                            });
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onBillingServiceDisconnected() {
+                }
+            });
+            recharge();
+        }
+
 
     }
 
@@ -277,21 +328,17 @@ public class GooglePlayHelper {
      * 补单操作
      */
     private void queryHistory() {
-        mBillingClient.queryPurchaseHistoryAsync(BillingClient.SkuType.INAPP,
-                new PurchaseHistoryResponseListener() {
-                    @Override
-                    public void onPurchaseHistoryResponse(BillingResult billingResult, List<PurchaseHistoryRecord> list) {
-                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
-                                && list != null) {
-                            for (final PurchaseHistoryRecord purchase : list) {
-                                consume2(purchase.getPurchaseToken());
-                            }
-                        } else {
-                            mActivityRef.get().finish();
-                        }
-                    }
-
-                });
+        Purchase.PurchasesResult mResult = mBillingClient.queryPurchases(BillingClient.SkuType.INAPP);
+        for (int i = 0; i < mResult.getPurchasesList().size(); i++) {
+            if (mResult.getPurchasesList().get(i).isAcknowledged()) {
+                consume2(mResult.getPurchasesList().get(i).getPurchaseToken());
+            } else {
+                uploadToServer2(mResult.getPurchasesList().get(i).getPurchaseToken(),
+                        mResult.getPurchasesList().get(i).getOrderId(),
+                        mResult.getPurchasesList().get(i).getAccountIdentifiers().getObfuscatedProfileId(),
+                        mPayTest);
+            }
+        }
 
 
     }
@@ -336,7 +383,7 @@ public class GooglePlayHelper {
     /**
      * 上传到服务器验证
      */
-    private void uploadToServer(final String purchaseToken, String mOrderID, int mPayTest) {
+    private void uploadToServer(final String purchaseToken,String mGoogleOrder, String mOrderID, int mPayTest) {
         LoginRealizeManager.googlePlay(mActivityRef.get(),
                 purchaseToken, mOrderID, mPayTest, new OnRechargeStateListener() {
                     @Override
@@ -350,8 +397,13 @@ public class GooglePlayHelper {
                                             result.getResultModel().getData().getOrder_number());
                                     mListener.onState(mActivityRef.get(), RechargeResult
                                             .successOf(result.getResultModel()));
+                                    consume(purchaseToken);
+                                } else if (result.getResultModel().getCode() == 10500) {
+                                    uploadToServer(purchaseToken,mGoogleOrder, mOrderID, mPayTest);
                                 } else {
-                                    queryHistory();
+                                    LoginRealizeManager.sendGooglePlayFailed(mActivityRef.get(), mOrderID, purchaseToken,
+                                            mGoogleOrder,
+                                            mPayTest, result.getResultModel().getMsg(), mListener);
                                 }
                             }
 
@@ -366,7 +418,7 @@ public class GooglePlayHelper {
     /**
      * 上传到服务器验证
      */
-    private void uploadToServer2(final String purchaseToken, String mOrderID, int mPayTest) {
+    private void uploadToServer2(final String purchaseToken,String mGoogleOrder, String mOrderID, int mPayTest) {
         LoginRealizeManager.googlePlay(mActivityRef.get(),
                 purchaseToken, mOrderID, mPayTest, new OnRechargeStateListener() {
                     @Override
@@ -378,9 +430,49 @@ public class GooglePlayHelper {
                                             result.getResultModel().getData().getGoods_price(),
                                             result.getResultModel().getData().getGoods_price_type(),
                                             result.getResultModel().getData().getOrder_number());
+                                    consume2(purchaseToken);
                                     if (mConsume.equals("1")) {
                                         recharge();
                                     }
+                                } else if (result.getResultModel().getCode() == 10500) {
+                                    uploadToServer2(purchaseToken,mGoogleOrder, mOrderID, mPayTest);
+                                } else {
+                                    LoginRealizeManager.sendGooglePlayFailed(mActivityRef.get(), mOrderID, purchaseToken,
+                                            mGoogleOrder,
+                                            mPayTest, result.getResultModel().getMsg(), mListener);
+                                }
+                            }
+
+                        }
+
+                    }
+
+                });
+
+    }
+
+    /**
+     * 上传到服务器验证
+     */
+    private void uploadToServer3(final String purchaseToken, String mGoogleOrder,String mOrderID, int mPayTest) {
+        LoginRealizeManager.googlePlay(mActivityRef.get(),
+                purchaseToken, mOrderID, mPayTest, new OnRechargeStateListener() {
+                    @Override
+                    public void onState(Activity activity, RechargeResult result) {
+                        if (result != null) {
+                            if (result.getResultModel() != null) {
+                                if (result.getResultModel().getCode() == 0) {
+                                    FacebookEventManager.getInstance().recharge(mActivityRef.get(),
+                                            result.getResultModel().getData().getGoods_price(),
+                                            result.getResultModel().getData().getGoods_price_type(),
+                                            result.getResultModel().getData().getOrder_number());
+                                    consume2(purchaseToken);
+                                } else if (result.getResultModel().getCode() == 10500) {
+                                    uploadToServer3(purchaseToken,mGoogleOrder, mOrderID, mPayTest);
+                                } else {
+                                    LoginRealizeManager.sendGooglePlayFailed(mActivityRef.get(), mOrderID, purchaseToken,
+                                            mGoogleOrder,
+                                            mPayTest, result.getResultModel().getMsg(), mListener);
                                 }
                             }
 
@@ -405,7 +497,6 @@ public class GooglePlayHelper {
      * 补单操作
      */
     public void addOrder() {
-        PreferencesUtils.init(mActivityRef.get());
         mBillingClient = BillingClient.newBuilder(mActivityRef.get())
                 .setListener(mPurchasesUpdatedListener)
                 .enablePendingPurchases()
@@ -415,7 +506,17 @@ public class GooglePlayHelper {
             public void onBillingSetupFinished(BillingResult billingResult) {
                 if (billingResult != null) {
                     if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                        queryHistory();
+                        Purchase.PurchasesResult mResult = mBillingClient.queryPurchases(BillingClient.SkuType.INAPP);
+                        for (int i = 0; i < mResult.getPurchasesList().size(); i++) {
+                            if (mResult.getPurchasesList().get(i).isAcknowledged()) {
+                                consume2(mResult.getPurchasesList().get(i).getPurchaseToken());
+                            } else {
+                                uploadToServer3(mResult.getPurchasesList().get(i).getPurchaseToken(),
+                                        mResult.getPurchasesList().get(i).getOrderId(),
+                                        mResult.getPurchasesList().get(i).getAccountIdentifiers().getObfuscatedProfileId(),
+                                        mPayTest);
+                            }
+                        }
                     }
                 }
 
