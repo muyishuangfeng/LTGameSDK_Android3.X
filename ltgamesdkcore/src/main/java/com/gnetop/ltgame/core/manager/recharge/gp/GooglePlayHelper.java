@@ -221,6 +221,7 @@ public class GooglePlayHelper {
                                                         .setSkuDetails(skuDetails)
                                                         .setObfuscatedAccountId(role_number + "")
                                                         .setObfuscatedProfileId(mOrderID)
+                                                        .setDeveloperId(mOrderID)
                                                         .build();
                                         mBillingClient.launchBillingFlow(mActivityRef.get(), purchaseParams);
                                     }
